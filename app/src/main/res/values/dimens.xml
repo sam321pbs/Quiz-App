@@ -1,0 +1,10 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="welcome_text_size">30sp</dimen>
+    <dimen name="welcome_margin_top">40dp</dimen>
+    <dimen name="start_quiz_margin_top">30dp</dimen>
+    <dimen name="enter_name_margin_top">70dp</dimen>
+    <dimen name="imageview_and_quiz_top_margin">15dp</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Quiz App</string>
+    <string name="welcome_to_random_quiz">Welcome to Random Quiz</string>
+    <string name="enter_your_name_here">Enter your name here</string>
+    <string name="start_quiz">Start Quiz</string>
+    <string name="question_image">Question Image</string>
+    <string name="enter_name">Enter name</string>
+    <string name="next_question">Next Question</string>
+</resources>

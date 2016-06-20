@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/image_view_to_show"
+            style="@style/image_view_and_question_style"
+            android:contentDescription="@string/question_image"/>
+
+    <TextView style="@style/image_view_and_question_style"
+              android:id="@+id/question_text_view"/>
+
+</LinearLayout>
