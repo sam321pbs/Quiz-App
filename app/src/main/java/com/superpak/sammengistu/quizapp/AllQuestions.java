@@ -29,7 +29,7 @@ public class AllQuestions {
 
         QuizQuestion quizQuestion3 = new QuizQuestion(
             0, "Is lemon a fruit?",
-            "It is a fruit", "Not a fruit", null, 0);
+            "It is a fruit", "Not a fruit", "It's a meat", 0);
 
         QuizQuestion quizQuestion4 = new QuizQuestion(
             0, "What was Elvis Praselys middle name?",
