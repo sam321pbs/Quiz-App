@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="wrap_content"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+              android:layout_gravity="center_horizontal">
 
     <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton"
-            android:layout_gravity="center_horizontal"/>
+           style="@style/radio_button_style"
+            android:id="@+id/radioButton"/>
     <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton2"
-            android:layout_gravity="center_horizontal"/>
+            style="@style/radio_button_style"
+            android:id="@+id/radioButton2"/>
     <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton3"
-            android:layout_gravity="center_horizontal"/>
+            style="@style/radio_button_style"
+            android:id="@+id/radioButton3"/>
 </LinearLayout>

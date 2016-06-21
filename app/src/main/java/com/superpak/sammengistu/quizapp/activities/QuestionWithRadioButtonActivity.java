@@ -5,6 +5,7 @@ import com.superpak.sammengistu.quizapp.QuizConstants;
 import com.superpak.sammengistu.quizapp.R;
 import com.superpak.sammengistu.quizapp.model.QuizQuestion;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,43 +38,63 @@ public class QuestionWithRadioButtonActivity extends AppCompatActivity {
     private final String TAG = "QuestionWithActivity";
 
     @Override
-    protected void onCreate(Bundle onSavedInstanceState){
+    protected void onCreate(Bundle onSavedInstanceState) {
         super.onCreate(onSavedInstanceState);
         setContentView(R.layout.activity_question_with_image);
         initializeView();
         new AllQuestions();
 
-        mSharedPreferences = getSharedPreferences(QuizConstants.SHARED_PREFERANCE_NAME, 0);
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putInt(QuizConstants.CURRENT_SCORE, 0);
-        editor.apply();
+        mSharedPreferences = getSharedPreferences(QuizConstants.SHARED_PREFERENCE_NAME, 0);
+
+        // Check whether we're recreating a previously destroyed instance
+        if (onSavedInstanceState != null) {
+            // Restore value of members from saved state
+            mCurrentQuestionPosition = onSavedInstanceState.getInt(QuizConstants.CURRENT_QUESTION);
+        } else {
+            //If onStateIsNull this is a brand new activity
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putInt(QuizConstants.CURRENT_SCORE, 0);
+            editor.apply();
+        }
 
         setUpQuestion();
 
-       setListenerForRadioButtons();
+        setListenerForRadioButtons();
 
         mNextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //check that an answer was selected
                 boolean answered = false;
-                for (RadioButton radioButton : mCurrentRadioButtons){
-                    if (radioButton.isChecked()){
+                for (RadioButton radioButton : mCurrentRadioButtons) {
+                    if (radioButton.isChecked()) {
                         answered = true;
                     }
                 }
 
                 if (answered) {
-                   handleAnswer();
+                    handleAnswer();
                 } else {
                     Toast.makeText(QuestionWithRadioButtonActivity.this,
-                        "Please select an answer", Toast.LENGTH_SHORT).show();
+                        R.string.please_select_an_answer, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void handleAnswer (){
+    /**
+     * Starts the check box activity if they reached the last question
+     * if they are not on the last question then it records the score and
+     * updates the question
+     */
+    private void handleAnswer() {
+        mCurrentQuestionPosition++;
+
+        if (mCurrentQuestionPosition == 5) {
+            Intent intent = new Intent(this, CheckActivity.class);
+            startActivity(intent);
+        }
+
         for (int i = 0; i < mCurrentRadioButtons.size(); i++) {
             if (i == mCurrentQuestion.getAnswer()) {
                 if (mCurrentRadioButtons.get(i).isChecked()) {
@@ -83,12 +104,11 @@ public class QuestionWithRadioButtonActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = mSharedPreferences.edit();
                     editor.putInt(QuizConstants.CURRENT_SCORE, ++mCurrentScore);
                     editor.apply();
-
-                    Log.i(TAG, "current score = " + mCurrentScore);
                 }
             }
         }
-        mCurrentQuestionPosition++;
+        Log.i(TAG, "current score = " + mCurrentScore);
+
         setUpQuestion();
     }
 
@@ -120,11 +140,13 @@ public class QuestionWithRadioButtonActivity extends AppCompatActivity {
 
     /**
      * Retrieves the next question in the question list and displays it
+     * if their is a picture for the question it will display it if not
+     * it removes it
      */
     private void setUpQuestion() {
         clearRadioButton();
         mCurrentQuestion = AllQuestions.getQuizQuestion(mCurrentQuestionPosition);
-        if (mCurrentQuestion.getPicForQuestion() != 0){
+        if (mCurrentQuestion.getPicForQuestion() != 0) {
             mPicForQuestion.setImageResource(mCurrentQuestion.getPicForQuestion());
         } else {
             mPicForQuestion.setImageDrawable(null);
@@ -137,7 +159,7 @@ public class QuestionWithRadioButtonActivity extends AppCompatActivity {
     }
 
     private void clearRadioButton() {
-        for (RadioButton radioButton : mCurrentRadioButtons){
+        for (RadioButton radioButton : mCurrentRadioButtons) {
             radioButton.setChecked(false);
         }
     }
@@ -158,4 +180,10 @@ public class QuestionWithRadioButtonActivity extends AppCompatActivity {
         mCurrentRadioButtons.add(mAnswerThreeRadioButton);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putInt(QuizConstants.CURRENT_QUESTION, mCurrentQuestionPosition);
+        super.onSaveInstanceState(outState);
+    }
 }

@@ -5,6 +5,9 @@ import com.superpak.sammengistu.quizapp.model.QuizQuestion;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Creates all the questions for the quiz and can be retrieved from any activity
+ */
 public class AllQuestions {
 
     private static List<QuizQuestion> mAllQuizQuestions;

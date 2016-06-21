@@ -15,4 +15,10 @@
         <item name="android:layout_marginTop">@dimen/imageview_and_quiz_top_margin</item>
     </style>
 
+    <style name="radio_button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/radio_button_margin_start</item>
+        <item name="android:layout_marginEnd">@dimen/radio_button_margin_start</item>
+    </style>
 </resources>

@@ -7,4 +7,7 @@
     <dimen name="start_quiz_margin_top">30dp</dimen>
     <dimen name="enter_name_margin_top">70dp</dimen>
     <dimen name="imageview_and_quiz_top_margin">15dp</dimen>
+    <dimen name="button_margin_bottom">15dp</dimen>
+    <dimen name="radio_button_margin_start">100dp</dimen>
+    <dimen name="next_question_margin_top">50dp</dimen>
 </resources>

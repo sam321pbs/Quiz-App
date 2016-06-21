@@ -42,7 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
         if (!nameOfUser.equals("")){
 
             SharedPreferences sharedPreferences = getSharedPreferences(
-                QuizConstants.SHARED_PREFERANCE_NAME, 0);
+                QuizConstants.SHARED_PREFERENCE_NAME, 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
             editor.putString(QuizConstants.USER_NAME, nameOfUser);

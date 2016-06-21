@@ -17,6 +17,8 @@
         </activity>
 
         <activity android:name=".activities.QuestionWithRadioButtonActivity"/>
+        <activity android:name=".activities.CheckActivity"/>
+        <activity android:name=".activities.ScoreActivity"/>
     </application>
 
 </manifest>
